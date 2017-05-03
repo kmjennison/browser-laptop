@@ -18,6 +18,10 @@ class Stats extends ImmutableComponent {
   get httpsUpgradedCount () {
     return this.props.newTabData.get('httpsUpgradedCount') || 0
   }
+  get adsViewedCount () {
+    // TODO: get from storage
+    return 3
+  }
   get estimatedTimeSaved () {
     const estimatedMillisecondsSaved = (this.adblockCount + this.trackedBlockersCount) * this.millisecondsPerItem || 0
     const hours = estimatedMillisecondsSaved < 1000 * 60 * 60 * 24
@@ -54,10 +58,12 @@ class Stats extends ImmutableComponent {
     const adblockCount = this.adblockCount
     const httpsUpgradedCount = this.httpsUpgradedCount
     const timeSaved = this.estimatedTimeSaved
+    const adsViewedCount = this.adsViewedCount
     const blockedArgs = JSON.stringify({
       adblockCount: adblockCount,
       trackedBlockersCount: trackedBlockersCount,
-      httpsUpgradedCount: httpsUpgradedCount
+      httpsUpgradedCount: httpsUpgradedCount,
+      adsViewedCount: adsViewedCount
     })
     return <ul className='statsContainer'>
       <li className='statsBlock'>
@@ -78,7 +84,12 @@ class Stats extends ImmutableComponent {
         </span>
         <span className='statsText' data-l10n-id='estimatedTimeSaved' />
       </li>
+      <li className='statsBlock'>
+        <span className='counter adsViewed'>{adsViewedCount}</span>
+        <span className='statsText' data-l10n-id='adsViewed' data-l10n-args={blockedArgs} />
+      </li>
     </ul>
   }
 }
+
 module.exports = Stats

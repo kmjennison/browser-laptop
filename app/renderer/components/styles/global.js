@@ -76,6 +76,7 @@ const globalStyles = {
     statsRed: '#fe521d',
     statsBlue: '#0796fa',
     statsLightGray: '#999999',
+    statsLightGreen: '#5fd274',
     defaultIconBackground: '#F7F7F7',
     notificationItemColor: '#f1e9e5',
     notificationBottomBorderColor: '#ff5500',
