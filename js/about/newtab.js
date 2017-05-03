@@ -21,6 +21,7 @@ const config = require('../constants/config')
 const backgrounds = require('../data/backgrounds')
 const {random} = require('../../app/common/lib/randomUtil')
 const NewPrivateTab = require('./newprivatetab')
+const NewTabAd = require('./newtabAd')
 
 const ipc = window.chrome.ipcRenderer
 
@@ -231,6 +232,12 @@ class NewTabPage extends React.Component {
   }
 
   render () {
+    // TODO: use some frequency logic
+    const showAd = true
+    if (showAd) {
+      return <NewTabAd />
+    }
+
     // don't render if user prefers an empty page
     if (this.state.showEmptyPage && !this.props.isIncognito) {
       return <div className='empty' />
